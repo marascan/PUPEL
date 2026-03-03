@@ -1,0 +1,17 @@
+{
+  "name": "PUPEL Stealth Chat",
+  "short_name": "PUPEL",
+  "description": "Zero-log Peer-to-Peer Messenger",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#00ff41",
+  "icons": [
+    {
+      "src": "./panda.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

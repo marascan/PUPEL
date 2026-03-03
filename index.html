@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="./panda.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PUPEL</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1b221b">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="./panda.png">
+
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <style>
+        /* Soft Matrix Theme - Eye Care */
+        body {
+            background: #0d0f0d; 
+            color: #88aa88; 
+            font-family: 'Consolas', monospace;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; margin: 0; overflow: hidden;
+        }
+
+        #app {
+            width: 95%; max-width: 400px;
+            background: #121412; 
+            border: 1px solid #1a1d1a;
+            padding: 25px; border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        h2 { text-align: center; letter-spacing: 5px; margin-top: 0; color: #557755; font-size: 1.2em; }
+
+        #display {
+            height: 350px; border: 1px solid #1a1d1a;
+            overflow-y: auto; margin: 15px 0; padding: 12px;
+            background: #0a0b0a; font-size: .85em;
+            display: flex; flex-direction: column; scroll-behavior: smooth;
+        }
+
+        input {
+            width: 100%; padding: 12px; background: #161a16;
+            border: 1px solid #222; color: #aaccaa; outline: 0;
+            margin-bottom: 8px; box-sizing: border-box; font-family: inherit;
+        }
+
+        button {
+            width: 100%; padding: 12px; background: #2a332a;
+            border: 1px solid #3a443a; color: #88aa88;
+            font-weight: 600; cursor: pointer; text-transform: uppercase;
+            transition: .3s; font-family: inherit;
+        }
+        button:hover { background: #3a443a; color: #aaccaa; }
+
+        .m { margin: 6px 0; padding: 10px 14px; border-radius: 4px; max-width: 85%; line-height: 1.5; word-wrap: break-word; }
+
+        /* Majtas (Mesazhi i marrë) - Jeshile e vrarë, shkronja të zeza */
+        .r { background: #88aa88; align-self: flex-start; color: #0d0f0d; font-weight: 600; border-bottom-left-radius: 0; }
+
+        /* Djathtas (Mesazhi yt) - Gri/Jeshile e errët, shkronja të bardha */
+        .l { background: #1b221b; align-self: flex-end; text-align: right; border: 1px solid #2a332a; color: #e0eee0; border-bottom-right-radius: 0; }
+
+        .sys { color: #445544; font-size: .7em; text-align: center; margin: 10px 0; font-style: italic; }
+        .donate-link { display: block; text-align: center; margin-top: 25px; color: #445544; text-decoration: none; font-size: 0.7em; letter-spacing: 1px; transition: 0.3s; }
+        .donate-link:hover { color: #88aa88; }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h2>PUPEL</h2>
+    <div id="login-screen">
+        <input type="text" id="room-input" placeholder="ROOM NAME" autocomplete="off" spellcheck="false" autocorrect="off">
+        <button id="btn-join">JOIN ROOM</button>
+        <a href="https://buymeacoffee.com/marascan" target="_blank" class="donate-link">☕ SUPPORT MARASCAN</a>
+    </div>
+    <div id="chat-screen" style="display:none">
+        <div id="display"><div class="sys">SESSION ACTIVATED. NO LOGS.</div></div>
+        <input type="text" id="msg-input" placeholder="Message..." autocomplete="off" spellcheck="false" autocorrect="off">
+        <button id="btn-send">SEND</button>
+    </div>
+</div>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js').catch(err => console.log("SW error:", err));
+        });
+    }
+
+    (function(_0x1b2d3e,_0x5a12f1){var _0x4a21b2=function(_0x9f12a3){while(--_0x9f12a3){_0x1b2d3e['push'](_0x1b2d3e['shift']());}};_0x4a21b2(++_0x5a12f1);}(['\x50\x75\x70\x65\x6C\x2D','\x76\x61\x6C\x75\x65','\x74\x72\x69\x6D','\x6F\x70\x65\x6E','\x63\x6F\x6E\x6E\x65\x63\x74\x69\x6F\x6E','\x64\x69\x73\x70\x6C\x61\x79','\x62\x6C\x6F\x63\x6B','\x73\x79\x73','\x64\x61\x74\x61','\x63\x6C\x6F\x73\x65'],0x1a4));var _0x4a21=function(_0x1b2d3e,_0x5a12f1){_0x1b2d3e=_0x1b2d3e-0x0;var _0x4a21b2=['\x50\x75\x70\x65\x6C\x2D','\x76\x61\x6C\x75\x65','\x74\x72\x69\x6D','\x6F\x70\x65\x6E','\x63\x6F\x6E\x6E\x65\x63\x74\x69\x6F\x6E','\x64\x69\x73\x70\x6C\x61\x79','\x62\x6C\x6F\x63\x6B','\x73\x79\x73','\x64\x61\x74\x61','\x63\x6C\x6F\x73\x65'][_0x1b2d3e];return _0x4a21b2;};
+    let _0x1a2b,_0x3c4d,_0x5e6f;const _0x7g8h="Pupel-";
+    function _0x9i0j(){_0x5e6f=document.getElementById('room-input').value.trim();if(!_0x5e6f)return;const _0x11aa=_0x7g8h+_0x5e6f+"-"+Math.floor(Math.random()*10000);_0x1a2b=new Peer(_0x11aa);_0x1a2b.on('open',id=>{document.getElementById('login-screen').style.display='none';document.getElementById('chat-screen').style.display='block';_0x22bb("Searching...","sys");_0x33cc();});_0x1a2b.on('connection',c=>{_0x3c4d=c;_0x44dd();});const _0xhost=new Peer(_0x7g8h+_0x5e6f);_0xhost.on('connection',c=>{_0x3c4d=c;_0x44dd();});}
+    function _0x33cc(){let _0x66ff=_0x1a2b.connect(_0x7g8h+_0x5e6f);_0x66ff.on('open',()=>{_0x3c4d=_0x66ff;_0x44dd();});}
+    function _0x44dd(){_0x22bb("Connected!","sys");_0x3c4d.on('data',d=>_0x22bb(d,"r"));_0x3c4d.on('close',()=>_0x22bb("Offline.","sys"));}
+    function _0x55ee(){const i=document.getElementById('msg-input');if(_0x3c4d&&_0x3c4d.open&&i.value){_0x3c4d.send(i.value);_0x22bb(i.value,"l");i.value="";i.focus();}}
+    function _0x22bb(t,y){const d=document.getElementById('display');const v=document.createElement('div');v.className="m "+y;v.innerText=t;d.appendChild(v);d.scrollTop=d.scrollHeight;}
+    document.getElementById('btn-join').onclick=_0x9i0j;document.getElementById('btn-send').onclick=_0x55ee;
+    document.getElementById('msg-input').onkeypress=e=>{if(e.key==='Enter')_0x55ee();};
+    window.onbeforeunload=()=>{if(_0x1a2b)_0x1a2b.destroy();};
+</script>
+</body>
+</html>
